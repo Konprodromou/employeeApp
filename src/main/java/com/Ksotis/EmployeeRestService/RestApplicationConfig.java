@@ -7,4 +7,6 @@ import javax.ws.rs.core.Application;
 
 public class RestApplicationConfig extends Application {
 
+	
+	
 }

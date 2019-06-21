@@ -34,60 +34,86 @@ import com.Ksotis.EmployeeApp.EmployeeDAO;
 @Consumes("application/json")
 public class EmployeeResource {
 
-	
-	
 	@GET
-    @Path("/all")
-	public Response  getAllEmployees() {
-		
-		EmployeeDAO empDAO = new EmployeeDAO();
+	@Path("/all")
+	public Response getAllEmployees() {
 
+		EmployeeDAO empDAO = new EmployeeDAO();
 		return Response.status(200).entity(empDAO.getAllEmployees()).build();
-		
+
 	}
-	
-	
+
 	@GET
 	@Path("{id}")
 	public Response getEmployee(@PathParam("id") int id) {
-		
-		EmployeeDAO empDAO = new EmployeeDAO();
-		return Response.status(200).entity(empDAO.getEmployeeById(id)).build();
-		
+
+		try {
+			EmployeeDAO empDAO = new EmployeeDAO();
+			return Response.status(200).entity(empDAO.getEmployeeById(id)).build();
+		}
+
+		catch (Exception e) {
+
+			e.printStackTrace();
+			return Response.status(403).build();
+
+		}
+
 	}
-	
+
 	@POST
 	public Response addEmployee(Employee employee) {
-		
-		EmployeeDAO empDAO = new EmployeeDAO();
-		empDAO.addEmployee(employee);
-		return Response.status(201).build();
-		
+		try {
+			EmployeeDAO empDAO = new EmployeeDAO();
+			empDAO.addEmployee(employee);
+			return Response.status(201).build();
+		}
+
+		catch (Exception e) {
+
+			e.printStackTrace();
+			return Response.status(403).build();
+
+		}
 	}
-	
+
+	@PUT
+	@Path("{id}/{name}")
+	public Response updateEmployee(@PathParam("id") int id, @PathParam("name") String name) {
+
+		try {
+
+			EmployeeDAO empDAO = new EmployeeDAO();
+			empDAO.changeFirstName(id, name);
+			return Response.status(200).build();
+
+		}
+
+		catch (Exception ex) {
+
+			ex.printStackTrace();
+			return Response.status(403).build();
+		}
+	}
+
 	@DELETE
 	@Path("{id}")
 	public Response deleteEmployee(@PathParam("id") int id) {
-		
-		
+
 		try {
-			
+
 			EmployeeDAO empDAO = new EmployeeDAO();
 			empDAO.deleteEmployee(id);
 			return Response.status(201).build();
 		}
-		
-		catch(Exception e ){
-			
+
+		catch (Exception e) {
+
 			e.printStackTrace();
 			return Response.status(403).build();
-			
-		}
-			
-		
-	}
-	
-	
 
-	
+		}
+
+	}
+
 }
