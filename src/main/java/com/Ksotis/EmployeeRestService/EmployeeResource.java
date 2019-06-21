@@ -1,0 +1,57 @@
+package com.Ksotis.EmployeeRestService;
+
+import java.awt.List;
+import java.util.ArrayList;
+
+import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+
+import com.Ksotis.EmployeeApp.EmployeeDAO;
+
+@Path("/employees")
+@Produces("application/json")
+@Consumes("application/json")
+public class EmployeeResource {
+
+	
+	@GET
+    @Path("/all")
+	public Response  getAllEmployees() {
+		
+		EmployeeDAO empDAO = new EmployeeDAO();
+
+		return Response.status(200).entity(empDAO.getAllEmployees()).build();
+		
+	}
+	
+	
+	@GET
+	@Path("{id}")
+	
+	public Response getEmployee(@PathParam("id") int id) {
+		
+		EmployeeDAO empDAO = new EmployeeDAO();
+		return Response.status(200).entity(empDAO.getEmployeeById(id)).build();
+		
+	}
+	
+}
