@@ -1,6 +1,6 @@
 package com.Ksotis.EmployeeApp;
 
-import java.io.Serializable;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +13,10 @@ import javax.persistence.Table;
 
 	@Entity
 	@Table(name = "emp_db")
-	public class Employee implements Serializable {
+	public class Employee  {
 
-		 private static final long serialVersionUID = 1L;
 		
 		@Id
-		 @GeneratedValue(strategy=GenerationType.AUTO)
 		@Column(name = "id")
 		private int id;
 		

@@ -13,8 +13,13 @@ public class MainApp {
 		// TODO Auto-generated method stub
 		
 //		Employee emp1 = new Employee();
-		Employee emp2 = new Employee();
+//		Employee emp2 = new Employee();
 
+		Employee emp3 = new Employee();
+		emp3.setId(6);
+		emp3.setFirstName("Panos");
+		emp3.setLastName("Prodromou");
+		emp3.setDept("dev");
 	
 		
 //		emp1.setId(1);
@@ -32,8 +37,11 @@ public class MainApp {
 //		empDAO.changeFirstName(2, "Panos");
 //		empDAO.deleteEmployee(2);
 		
+		empDAO.addEmployee(emp3);
+		
 		//System.out.println(empDAO.getEmployeeById(1).toString());
-		System.out.println(empDAO.getAllEmployees());
+		
+		empDAO.getAllEmployees().toString();
 	}
 
 }
